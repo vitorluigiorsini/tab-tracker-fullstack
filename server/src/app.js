@@ -8,9 +8,7 @@ app.use(bodyParser.json())
 app.use(morgan('combined'))
 app.use(cors())
 
-app.post('/register', (req, res) => {
-  res.send(`Hello ${req.body.email}! Thanks for registering!`)
-})
+require('./routes')(app)
 
 app.listen(8085, () => {
   console.log('Server listening on port 8085')
