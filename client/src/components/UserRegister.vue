@@ -1,9 +1,11 @@
 <template>
-  <div>Register</div>
+  <h1>Register</h1>
 
   <input type="email" name="email" placeholder="Email" v-model="email" />
   <br />
   <input type="password" name="password" placeholder="Password" v-model="password" />
+  <br />
+  <div class="error" v-html="error"></div>
   <br />
   <button @click="register">Sign up</button>
 </template>
@@ -14,7 +16,8 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: null
     }
   },
   methods: {
@@ -26,11 +29,15 @@ export default {
         })
         console.log(response.data)
       } catch (error) {
-        console.error(error.message)
+        this.error = error.response.data.error
       }
     }
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.error {
+  color: red;
+}
+</style>
