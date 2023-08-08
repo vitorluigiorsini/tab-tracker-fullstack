@@ -1,13 +1,28 @@
 <template>
   <div id="app">
-    <router-view />
+    <VApp>
+      <HeaderSection />
+      <VMain>
+        <VContainer fluid>
+          <router-view />
+        </VContainer>
+      </VMain>
+    </VApp>
   </div>
 </template>
 
 <script>
+import { VApp, VContainer, VMain } from 'vuetify/lib/components/index.mjs'
+import HeaderSection from './components/HeaderSection.vue'
 export default {
   data() {
     return {}
+  },
+  components: {
+    HeaderSection,
+    VApp,
+    VMain,
+    VContainer
   }
 }
 </script>

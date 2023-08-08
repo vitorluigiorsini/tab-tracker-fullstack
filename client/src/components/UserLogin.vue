@@ -4,7 +4,7 @@
       <VCol sm="6" offset-sm="3">
         <VSheet color="white" elevation="2">
           <VToolbar flat density="compact" color="blue" class="text-start">
-            <VToolbarTitle>Register</VToolbarTitle>
+            <VToolbarTitle>Login</VToolbarTitle>
           </VToolbar>
           <v-col>
             <v-sheet class="pl-4 pr-4 pt-2 pb-2">
@@ -19,7 +19,7 @@
               <br />
               <div class="text-red" v-html="error"></div>
               <br />
-              <VBtn color="blue" @click="register">Register</VBtn>
+              <VBtn color="blue" @click="login">Login</VBtn>
             </v-sheet>
           </v-col>
         </VSheet>
@@ -49,9 +49,9 @@ export default {
     }
   },
   methods: {
-    async register() {
+    async login() {
       try {
-        await AuthenticationService.register({
+        await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
