@@ -8,18 +8,20 @@
           </VToolbar>
           <v-col>
             <v-sheet class="pl-4 pr-4 pt-2 pb-2">
-              <VTextField type="email" label="Email" variant="underlined" v-model="email" />
-              <br />
-              <VTextField
-                type="password"
-                label="Password"
-                variant="underlined"
-                v-model="password"
-              />
-              <br />
-              <div class="text-red" v-html="error"></div>
-              <br />
-              <VBtn color="blue" @click="register">Register</VBtn>
+              <VForm>
+                <VTextField type="email" label="Email" variant="underlined" v-model="email" />
+                <br />
+                <VTextField
+                  type="password"
+                  label="Password"
+                  variant="underlined"
+                  v-model="password"
+                />
+                <br />
+                <div class="text-red" v-html="error"></div>
+                <br />
+                <VBtn color="blue" @click="register">Register</VBtn>
+              </VForm>
             </v-sheet>
           </v-col>
         </VSheet>
@@ -33,6 +35,7 @@ import {
   VBtn,
   VCol,
   VContainer,
+  VForm,
   VRow,
   VSheet,
   VTextField,
@@ -60,7 +63,7 @@ export default {
       }
     }
   },
-  components: { VToolbar, VToolbarTitle, VContainer, VTextField, VSheet, VCol, VRow, VBtn }
+  components: { VToolbar, VToolbarTitle, VContainer, VTextField, VSheet, VCol, VRow, VBtn, VForm }
 }
 </script>
 
