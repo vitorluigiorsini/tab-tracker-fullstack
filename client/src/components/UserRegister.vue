@@ -43,6 +43,7 @@ import {
   VToolbarTitle
 } from 'vuetify/lib/components/index.mjs'
 import AuthenticationService from '../services/AuthenticationService'
+import { useUserStore } from '../stores/userStore'
 export default {
   data() {
     return {
@@ -51,13 +52,20 @@ export default {
       error: null
     }
   },
+  setup() {
+    const userStore = useUserStore()
+
+    return { userStore }
+  },
   methods: {
     async register() {
       try {
-        await AuthenticationService.register({
+        const response = await AuthenticationService.register({
           email: this.email,
           password: this.password
         })
+        this.userStore.setUser(response.data.user)
+        this.userStore.setToken(response.data.token)
       } catch (error) {
         this.error = error.response.data.error
       }
