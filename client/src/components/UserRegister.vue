@@ -2,46 +2,39 @@
   <VContainer>
     <VRow>
       <VCol sm="6" offset-sm="3">
-        <VSheet color="white" elevation="2">
-          <VToolbar flat density="compact" color="blue" class="text-start">
-            <VToolbarTitle>Register</VToolbarTitle>
-          </VToolbar>
-          <v-col>
-            <v-sheet class="pl-4 pr-4 pt-2 pb-2">
-              <VForm>
-                <VTextField type="email" label="Email" variant="underlined" v-model="email" />
-                <br />
-                <VTextField
-                  type="password"
-                  label="Password"
-                  variant="underlined"
-                  v-model="password"
-                />
-                <br />
-                <div class="text-red" v-html="error"></div>
-                <br />
-                <VBtn color="blue" @click="register">Register</VBtn>
-              </VForm>
-            </v-sheet>
-          </v-col>
-        </VSheet>
+        <PanelContainer title="Register">
+          <VForm>
+            <VTextField type="email" label="E-mail" variant="underlined" v-model="email" />
+            <br />
+            <VTextField type="password" label="Password" variant="underlined" v-model="password" />
+            <br />
+            <VTextField
+              type="password"
+              label="Confirm Password"
+              variant="underlined"
+              v-model="confirmPassword"
+            />
+            <br />
+            <div class="text-red" v-html="error"></div>
+            <br />
+            <VBtn color="blue" @click="register">Register</VBtn>
+          </VForm>
+          <br />
+          <div>
+            Already have an account?
+            <VBtn class="pa-0 text-decoration-underline text-blue" variant="text" to="/login">
+              Log in</VBtn
+            >
+          </div>
+        </PanelContainer>
       </VCol>
     </VRow>
   </VContainer>
 </template>
 
 <script>
-import {
-  VBtn,
-  VCol,
-  VContainer,
-  VForm,
-  VRow,
-  VSheet,
-  VTextField,
-  VToolbar,
-  VToolbarTitle
-} from 'vuetify/lib/components/index.mjs'
+import { VBtn, VCol, VContainer, VForm, VRow, VTextField } from 'vuetify/lib/components/index.mjs'
+import PanelContainer from './PanelContainer.vue'
 import AuthenticationService from '../services/AuthenticationService'
 import { useUserStore } from '../stores/userStore'
 export default {
@@ -49,6 +42,7 @@ export default {
     return {
       email: '',
       password: '',
+      confirmPassword: '',
       error: null
     }
   },
@@ -60,6 +54,9 @@ export default {
   methods: {
     async register() {
       try {
+        if (this.password !== this.confirmPassword) {
+          return (this.error = 'The password confirmation is incorrect')
+        }
         const response = await AuthenticationService.register({
           email: this.email,
           password: this.password
@@ -71,7 +68,15 @@ export default {
       }
     }
   },
-  components: { VToolbar, VToolbarTitle, VContainer, VTextField, VSheet, VCol, VRow, VBtn, VForm }
+  components: {
+    PanelContainer,
+    VContainer,
+    VTextField,
+    VBtn,
+    VForm,
+    VRow,
+    VCol
+  }
 }
 </script>
 

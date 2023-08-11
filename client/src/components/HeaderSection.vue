@@ -3,11 +3,10 @@
     <VBtn height="100%" to="/">
       <VAppBarTitle class="mr-4"> TabTracker </VAppBarTitle>
     </VBtn>
-    <!-- TODO: implement me -->
-    <!-- <VBtn flat height="100%">Browse</VBtn> -->
+    <VBtn flat height="100%" to="/songs">Browse</VBtn>
     <VSpacer></VSpacer>
-    <VBtn v-if="!isUserLoggedIn" flat height="100%" to="login"> Login </VBtn>
-    <VBtn v-if="!isUserLoggedIn" flat height="100%" to="register"> Sign Up </VBtn>
+    <VBtn v-if="!isUserLoggedIn" flat height="100%" to="/login"> Login </VBtn>
+    <VBtn v-if="!isUserLoggedIn" flat height="100%" to="/register"> Sign Up </VBtn>
     <VBtn v-if="isUserLoggedIn" @click="logout" flat height="100%" to="/"> Log Out </VBtn>
   </VAppBar>
 </template>
