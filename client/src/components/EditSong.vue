@@ -58,7 +58,7 @@
       <br />
       <div class="text-red" v-if="error">{{ error }}</div>
       <br />
-      <VBtn color="blue" @click="create">Create Song</VBtn>
+      <VBtn color="blue" @click="save">Save Song</VBtn>
     </VCol>
   </VRow>
 </template>
@@ -85,7 +85,7 @@ export default {
     }
   },
   methods: {
-    async create() {
+    async save() {
       this.error = null
       const areAllFieldsFilledIn = Object.keys(this.song).every((key) => !!this.song[key])
       if (!areAllFieldsFilledIn) {
@@ -93,14 +93,26 @@ export default {
         return
       }
 
+      const songId = this.$route.params.songId
       try {
-        await SongsService.create(this.song)
+        await SongsService.update(this.song)
         this.$router.push({
-          path: '/songs'
+          name: 'song',
+          params: {
+            songId: songId
+          }
         })
       } catch (error) {
         console.log(error)
       }
+    }
+  },
+  async mounted() {
+    try {
+      const songId = this.$route.params.songId
+      this.song = (await SongsService.show(songId)).data
+    } catch (error) {
+      console.log(error)
     }
   },
   components: {

@@ -1,39 +1,37 @@
 <template>
-  <VContainer>
-    <VRow>
-      <VCol sm="6" offset-sm="3">
-        <PanelContainer title="Register">
-          <VForm>
-            <VTextField type="email" label="E-mail" variant="underlined" v-model="email" />
-            <br />
-            <VTextField type="password" label="Password" variant="underlined" v-model="password" />
-            <br />
-            <VTextField
-              type="password"
-              label="Confirm Password"
-              variant="underlined"
-              v-model="confirmPassword"
-            />
-            <br />
-            <div class="text-red" v-html="error"></div>
-            <br />
-            <VBtn color="blue" @click="register">Register</VBtn>
-          </VForm>
+  <VRow>
+    <VCol sm="6" offset-sm="3">
+      <PanelContainer title="Register">
+        <VForm>
+          <VTextField type="email" label="E-mail" variant="underlined" v-model="email" />
           <br />
-          <div>
-            Already have an account?
-            <VBtn class="pa-0 text-decoration-underline text-blue" variant="text" to="/login">
-              Log in</VBtn
-            >
-          </div>
-        </PanelContainer>
-      </VCol>
-    </VRow>
-  </VContainer>
+          <VTextField type="password" label="Password" variant="underlined" v-model="password" />
+          <br />
+          <VTextField
+            type="password"
+            label="Confirm Password"
+            variant="underlined"
+            v-model="confirmPassword"
+          />
+          <br />
+          <div class="text-red" v-html="error"></div>
+          <br />
+          <VBtn color="blue" @click="register">Register</VBtn>
+        </VForm>
+        <br />
+        <div>
+          Already have an account?
+          <VBtn class="pa-0 text-decoration-underline text-blue" variant="text" to="/login">
+            Log in</VBtn
+          >
+        </div>
+      </PanelContainer>
+    </VCol>
+  </VRow>
 </template>
 
 <script>
-import { VBtn, VCol, VContainer, VForm, VRow, VTextField } from 'vuetify/lib/components/index.mjs'
+import { VBtn, VCol, VForm, VRow, VTextField } from 'vuetify/lib/components/index.mjs'
 import PanelContainer from './PanelContainer.vue'
 import AuthenticationService from '../services/AuthenticationService'
 import { useUserStore } from '../stores/userStore'
@@ -63,6 +61,7 @@ export default {
         })
         this.userStore.setUser(response.data.user)
         this.userStore.setToken(response.data.token)
+        this.$router.push({ name: 'songs' })
       } catch (error) {
         this.error = error.response.data.error
       }
@@ -70,7 +69,6 @@ export default {
   },
   components: {
     PanelContainer,
-    VContainer,
     VTextField,
     VBtn,
     VForm,

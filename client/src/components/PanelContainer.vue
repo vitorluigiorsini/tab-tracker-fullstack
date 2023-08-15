@@ -6,21 +6,20 @@
 
       <slot name="action"></slot>
     </VToolbar>
-    <v-col>
-      <v-sheet class="pl-4 pr-4 pt-2 pb-2"> </v-sheet>
+    <VSheet class="pl-4 pr-4 pt-2 pb-2">
       <slot>No slot content defined</slot>
-    </v-col>
+    </VSheet>
   </VSheet>
 </template>
 
 <script>
-import { VCol, VSheet, VSpacer, VToolbar, VToolbarTitle } from 'vuetify/lib/components/index.mjs'
+import { VSheet, VSpacer, VToolbar, VToolbarTitle } from 'vuetify/lib/components/index.mjs'
 export default {
   data() {
     return {}
   },
   props: ['title'],
-  components: { VToolbar, VCol, VSheet, VToolbarTitle, VSpacer }
+  components: { VToolbar, VSheet, VToolbarTitle, VSpacer }
 }
 </script>
 
