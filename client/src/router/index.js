@@ -2,9 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../components/HomePage.vue'
 import UserRegister from '../components/UserRegister.vue'
 import UserLogin from '../components/UserLogin.vue'
-import SongsPage from '../components/SongsPage.vue'
+import SongsPage from '../components/SongsPage/SongsPage.vue'
 import CreateSong from '../components/CreateSong.vue'
-import ViewSong from '../components/ViewSong.vue'
+import ViewSong from '../components/ViewSong/ViewSong.vue'
 import EditSong from '../components/EditSong.vue'
 
 const router = createRouter({

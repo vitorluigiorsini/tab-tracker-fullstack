@@ -25,7 +25,6 @@
 
 <script>
 import { VBtn, VCol, VForm, VRow, VTextField } from 'vuetify/lib/components/index.mjs'
-import PanelContainer from './PanelContainer.vue'
 import AuthenticationService from '../services/AuthenticationService'
 import { useUserStore } from '../stores/userStore'
 export default {
@@ -57,7 +56,6 @@ export default {
     }
   },
   components: {
-    PanelContainer,
     VTextField,
     VBtn,
     VForm,

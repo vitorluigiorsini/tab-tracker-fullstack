@@ -65,7 +65,6 @@
 
 <script>
 import { VBtn, VCol, VRow, VTextField, VTextarea } from 'vuetify/lib/components/index.mjs'
-import PanelContainer from './PanelContainer.vue'
 import SongsService from '../services/SongsService'
 export default {
   data() {
@@ -104,7 +103,6 @@ export default {
     }
   },
   components: {
-    PanelContainer,
     VTextField,
     VRow,
     VCol,
