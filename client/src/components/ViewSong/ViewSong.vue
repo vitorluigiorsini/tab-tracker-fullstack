@@ -3,7 +3,7 @@
     <VCol sm="6" offset="3">
       <PanelContainer title="Song Info">
         <template v-slot:action>
-          <VBtn icon="mdi-pencil" @click="navigateTo(song.id)"></VBtn>
+          <VBtn icon="mdi-pencil" :to="{ name: 'song-edit', params: { songId: song.id } }"></VBtn>
         </template>
         <VContainer>
           <VRow>
@@ -39,11 +39,6 @@ export default {
   async mounted() {
     const songId = this.$route.params.songId
     this.song = (await SongsService.show(songId)).data
-  },
-  methods: {
-    navigateTo(songId) {
-      this.$router.push({ name: 'song-edit', params: { songId: songId } })
-    }
   },
   components: {
     VContainer,

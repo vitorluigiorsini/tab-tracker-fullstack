@@ -18,7 +18,7 @@
               {{ song.genre }}
             </div>
             <br />
-            <VBtn color="blue" @click="navigateTo(song.id)">View</VBtn>
+            <VBtn color="blue" :to="{ name: 'song', params: { songId: song.id } }">View</VBtn>
           </VCol>
           <VCol sm="6">
             <VImg
@@ -46,11 +46,6 @@ export default {
   data() {
     return {
       songs: null
-    }
-  },
-  methods: {
-    navigateTo(songId) {
-      this.$router.push({ name: 'song', params: { songId: songId } })
     }
   },
   watch: {

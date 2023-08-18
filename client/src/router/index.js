@@ -44,6 +44,10 @@ const router = createRouter({
       path: '/songs/:songId/edit',
       name: 'song-edit',
       component: EditSong
+    },
+    {
+      path: '/:catchAll(.*)',
+      redirect: 'songs'
     }
   ]
 })
