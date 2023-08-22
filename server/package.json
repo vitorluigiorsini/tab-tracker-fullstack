@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/app.js",
-    "dev": "docker compose up -d && nodemon ./src/app.js",
+    "start": "nodemon ./src/app.js",
+    "dev": "nodemon ./src/app.js",
     "seed": "node ./seed"
   },
   "keywords": [],
