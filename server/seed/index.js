@@ -17,9 +17,11 @@ sequelize.sync({ force: true }).then(async function () {
     })
   )
 
-  await Promise.all(
-    bookmarks.map((bookmark) => {
-      Bookmark.create(bookmark)
-    })
-  )
+  setTimeout(async () => {
+    await Promise.all(
+      bookmarks.map((bookmark) => {
+        Bookmark.create(bookmark)
+      })
+    )
+  }, 1000)
 })

@@ -1,5 +1,5 @@
 <template>
-  <div class="text-h2">Welcome to Tab Tracker App!</div>
+  <div class="text-h4 text-sm-h2">Welcome to Tab Tracker App!</div>
   <VImg class="ma-auto mt-6" :aspect-ratio="1" max-width="400" :src="GuitarImg"></VImg>
 </template>
 
