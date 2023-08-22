@@ -1,0 +1,7 @@
+const path = require('path')
+const { databaseUrl } = require('./config/config')
+
+module.exports = {
+  url: databaseUrl,
+  'models-path': path.resolve('src', 'models')
+}
