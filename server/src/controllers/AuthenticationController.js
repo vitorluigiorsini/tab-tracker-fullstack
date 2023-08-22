@@ -10,6 +10,18 @@ function jwtSignUser(user) {
 }
 
 module.exports = {
+  async index(req, res) {
+    try {
+      const users = await User.findAll({
+        limit: 10
+      })
+      res.send(users)
+    } catch (error) {
+      res.status(500).send({
+        error: 'An error occurred trying to fetch the users'
+      })
+    }
+  },
   async register(req, res) {
     try {
       const user = await User.create(req.body)

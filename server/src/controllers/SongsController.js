@@ -4,7 +4,7 @@ module.exports = {
   async index(req, res) {
     try {
       let songs = null
-      const search = req.query.search
+      const { search } = req.query
       if (search) {
         songs = await Song.findAll({
           where: {
@@ -22,7 +22,6 @@ module.exports = {
       }
       res.send(songs)
     } catch (error) {
-      console.log(error)
       res.status(500).send({
         error: 'An error occurred trying to fetch the songs'
       })
@@ -64,14 +63,10 @@ module.exports = {
   },
   async delete(req, res) {
     try {
-      await Song.destroy({
-        where: {
-          id: req.params.songId
-        }
-      })
-      res.send({
-        message: 'Song deleted with success!'
-      })
+      const { songId } = req.params
+      const song = await Bookmark.findByPk(songId)
+      await song.destroy()
+      res.send(song)
     } catch (error) {
       res.status(500).send({
         error: 'An error occurred trying to delete the song'
