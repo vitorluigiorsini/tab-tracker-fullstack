@@ -5,6 +5,7 @@ const { databaseUrl } = require('../../config/config')
 const db = {}
 
 const sequelize = new Sequelize(databaseUrl, {
+  dialectModule: require('pg'),
   operatorsAliases: {
     $or: Sequelize.Op.or,
     $like: Sequelize.Op.like
