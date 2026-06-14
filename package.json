@@ -1,0 +1,29 @@
+{
+  "name": "tab-tracker",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "format": "prettier --write \"apps/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "typecheck": "turbo typecheck",
+    "prepare": "lefthook install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "lefthook": "^1.11.0",
+    "oxlint": "^0.16.0",
+    "prettier": "^3.5.0",
+    "turbo": "^2.5.0",
+    "vitest": "^3.1.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "lefthook", "sharp"]
+  },
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=18"
+  }
+}

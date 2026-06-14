@@ -1,0 +1,12 @@
+pre-commit:
+  commands:
+    lint:
+      run: pnpm lint
+      stage_fixed: true
+    typecheck:
+      run: pnpm typecheck
+
+commit-msg:
+  commands:
+    commitlint:
+      run: npx commitlint --edit {1}
