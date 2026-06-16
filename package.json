@@ -13,6 +13,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
+    "esbuild": "0.28.1",
     "lefthook": "^1.11.0",
     "oxlint": "^0.16.0",
     "prettier": "^3.5.0",
@@ -20,7 +21,11 @@
     "vitest": "^3.1.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "lefthook", "sharp"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "lefthook",
+      "sharp"
+    ]
   },
   "packageManager": "pnpm@10.33.0",
   "engines": {
