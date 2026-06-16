@@ -15,6 +15,9 @@ export default function HeaderSection() {
         <Link href="/songs" className="hover:opacity-90">
           Browse
         </Link>
+        <Link href="/bookmarks" className="hover:opacity-90">
+          Bookmarks
+        </Link>
         <div className="flex-1" />
         {!isUserLoggedIn ? (
           <>

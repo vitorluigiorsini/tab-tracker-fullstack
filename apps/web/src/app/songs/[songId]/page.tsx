@@ -60,63 +60,78 @@ export default function ViewSongPage() {
           </Link>
         }
       >
-        <div className="grid grid-cols-2 gap-4">
-          <div className="text-center">
-            {song.albumImageUrl && (
-              <Image src={song.albumImageUrl} alt={song.album} width={160} height={160} className="rounded mx-auto" />
-            )}
-            <p className="text-sm text-gray-600 mt-1">{song.album}</p>
-          </div>
-          <div>
-            <h2 className="text-xl font-bold">{song.title}</h2>
-            <p className="text-lg text-gray-700">{song.artist}</p>
-            <p className="text-sm text-gray-500">{song.genre}</p>
-            <div className="mt-3">
-              {isUserLoggedIn && (
-                <button
-                  onClick={bookmark ? unsetAsBookmark : setAsBookmark}
-                  className={`text-2xl ${bookmark ? 'text-red-500' : 'text-gray-400'} hover:text-red-500`}
-                  title={bookmark ? 'Remove bookmark' : 'Add bookmark'}
-                >
-                  {bookmark ? '♥' : '♡'}
-                </button>
+        {/* Album info and video on left, tabs/lyrics on right */}
+        <div className="grid gap-6 md:grid-cols-[1fr_1fr]">
+          {/* Left column: Album info + Video */}
+          <div className="space-y-6">
+            <div className="text-center">
+              {song.albumImageUrl && (
+                <Image src={song.albumImageUrl} alt={song.album} width={160} height={160} className="rounded mx-auto" />
               )}
+              <p className="text-sm text-gray-600 mt-1">{song.album}</p>
+            </div>
+            <div>
+              <h2 className="text-xl font-bold">{song.title}</h2>
+              <p className="text-lg text-gray-700">{song.artist}</p>
+              <p className="text-sm text-gray-500">{song.genre}</p>
+              <div className="mt-3">
+                {isUserLoggedIn && (
+                  <button
+                    onClick={bookmark ? unsetAsBookmark : setAsBookmark}
+                    className={`text-2xl ${bookmark ? 'text-red-500' : 'text-gray-400'} hover:text-red-500`}
+                    title={bookmark ? 'Remove bookmark' : 'Add bookmark'}
+                  >
+                    {bookmark ? '♥' : '♡'}
+                  </button>
+                )}
+              </div>
+            </div>
+            
+            {/* Video section */}
+            <div className="mt-4">
+              <div className="aspect-video bg-black rounded overflow-hidden">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${song.youtubeId}`}
+                  title={`${song.artist} - ${song.title}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="mt-6">
-          <div className="flex gap-2 mb-2">
-            <button
-              onClick={() => setIsTabActive(true)}
-              className={`px-3 py-1 rounded text-sm ${isTabActive ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
-            >
-              Tab
-            </button>
-            <button
-              onClick={() => setIsTabActive(false)}
-              className={`px-3 py-1 rounded text-sm ${!isTabActive ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
-            >
-              Lyrics
-            </button>
-          </div>
-          <textarea
-            readOnly
-            value={isTabActive ? song.tab : song.lyrics}
-            className="w-full border rounded p-2 text-sm font-mono bg-gray-50 resize-none"
-            rows={10}
-          />
-        </div>
-
-        <div className="mt-6">
-          <div className="aspect-video bg-black rounded overflow-hidden">
-            <iframe
-              width="100%"
-              height="100%"
-              src={`https://www.youtube.com/embed/${song.youtubeId}`}
-              title={`${song.artist} - ${song.title}`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
+          
+          {/* Right column: Tab/Lyrics controls + Textarea */}
+          <div className="space-y-4">
+            <div className="flex gap-2 mb-2">
+              <button
+                onClick={() => setIsTabActive(true)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium 
+                           ${isTabActive ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}
+                           hover:${isTabActive ? 'bg-blue-700' : 'bg-gray-300'}
+                           transition-colors duration-150 focus-visible:outline-none 
+                           focus-visible:ring-2 focus-visible:ring-blue-500`}
+              >
+                Tab
+              </button>
+              <button
+                onClick={() => setIsTabActive(false)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium 
+                           ${!isTabActive ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}
+                           hover:${!isTabActive ? 'bg-blue-700' : 'bg-gray-300'}
+                           transition-colors duration-150 focus-visible:outline-none 
+                           focus-visible:ring-2 focus-visible:ring-blue-500`}
+              >
+                Lyrics
+              </button>
+            </div>
+            <textarea
+              readOnly
+              value={isTabActive ? song.tab : song.lyrics}
+              className="w-full border rounded p-3 text-sm font-mono bg-gray-50 resize-none 
+                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+              rows={22}
             />
           </div>
         </div>

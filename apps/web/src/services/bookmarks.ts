@@ -10,6 +10,10 @@ export const bookmarksService = {
     return api<Bookmark | null>(`/bookmarks?${params}`)
   },
 
+  indexByUserId(userId: number) {
+    return api<Bookmark[]>(`/bookmarks?userId=${userId}`)
+  },
+
   post(data: { songId: number; userId: number }) {
     return api<Bookmark>('/bookmarks', {
       method: 'POST',

@@ -75,3 +75,7 @@ pnpm typecheck
 - View song details (album art, YouTube embed, lyrics/tab toggle)
 - Create and edit songs
 - Bookmark favorite songs
+
+## Todo
+
+- Fix the Bookmarks page
